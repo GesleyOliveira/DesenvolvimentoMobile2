@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Portfólio</title>
+    <!-- Link para o Bootstrap -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Link para o CSS personalizado -->
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <!-- Barra de Navegação -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Meu Portfólio</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Alternar navegação">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#sobre">Sobre</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#projetos">Projetos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#contato">Contato</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Seção de Introdução -->
+    <header class="jumbotron text-center">
+        <h1 class="display-4">Bem-vindo ao Meu Portfólio</h1>
+        <p class="lead">Desenvolvedor Web apaixonado por criar soluções inovadoras.</p>
+    </header>
+
+    <!-- Seção Sobre -->
+    <section id="sobre" class="container py-5">
+        <h2>Sobre Mim</h2>
+        <p>Sou um desenvolvedor web com experiência em diversas tecnologias, incluindo HTML, CSS, JavaScript, e frameworks como React.</p>
+    </section>
+
+    <!-- Seção Projetos -->
+    <section id="projetos" class="container py-5">
+        <h2>Meus Projetos</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="https://via.placeholder.com/350x200" class="card-img-top" alt="Projeto 1">
+                    <div class="card-body">
+                        <h5 class="card-title">Projeto 1</h5>
+                        <p class="card-text">Descrição breve do projeto.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="https://via.placeholder.com/350x200" class="card-img-top" alt="Projeto 2">
+                    <div class="card-body">
+                        <h5 class="card-title">Projeto 2</h5>
+                        <p class="card-text">Descrição breve do projeto.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="https://via.placeholder.com/350x200" class="card-img-top" alt="Projeto 3">
+                    <div class="card-body">
+                        <h5 class="card-title">Projeto 3</h5>
+                        <p class="card-text">Descrição breve do projeto.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Contato -->
+    <section id="contato" class="container py-5">
+        <h2>Contato</h2>
+        <form id="form-contato">
+            <div class="form-group">
+                <label for="nome">Nome</label>
+                <input type="text" class="form-control" id="nome" placeholder="Seu nome">
+            </div>
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input type="email" class="form-control" id="email" placeholder="Seu e-mail">
+            </div>
+            <div class="form-group">
+                <label for="mensagem">Mensagem</label>
+                <textarea class="form-control" id="mensagem" rows="3" placeholder="Sua mensagem"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+    </section>
+
+    <!-- Rodapé -->
+    <footer class="text-center py-4">
+        <p>&copy; 2025 Meu Portfólio. Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
