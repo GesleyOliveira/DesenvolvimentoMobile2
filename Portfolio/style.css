@@ -24,6 +24,10 @@ header p {
     padding: 20px;
     margin-bottom: 20px;
     transition: all 0.3s ease;
+    height: 350px; /* Define a altura fixa para todos os cards */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .card:hover {
@@ -34,11 +38,14 @@ header p {
 .card h3 {
     font-size: 1.5rem;
     margin-bottom: 10px;
+    flex-grow: 0; /* Evita que o título cresça além do tamanho necessário */
 }
 
 .card p {
     font-size: 1rem;
     color: #555;
+    flex-grow: 1; /* Permite que o parágrafo cresça para ocupar o espaço disponível */
+    margin-bottom: 10px; /* Dá um espaço na parte inferior */
 }
 
 /* Formulário de Contato */
@@ -95,6 +102,7 @@ form button:hover {
 
     .card {
         padding: 15px;
+        height: auto; /* Em dispositivos menores, ajusta a altura do card conforme necessário */
     }
 
     form {
