@@ -1,0 +1,68 @@
+body{
+    background-image: url("../img/img2.jpg");
+    font-family: 'Roboto', sans-serif;
+    background-size: cover;
+}
+
+h2{
+    text-align: center
+}
+
+nav ul{
+    list-style-type: none;   
+}
+
+nav ul a{
+    text-decoration: none;
+}
+
+h2, h3{
+        text-align: center;
+        font-family:'Roboto', sans-serif;
+}
+
+table{
+    background-color:rgba(255, 255, 255, 0.749) ;
+     border-color: none;
+     width: max-content;
+     margin-left: auto; 
+     margin-right: auto;
+     font-style: oblique;
+     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+fieldset{
+    background-color:rgba(255, 255, 255, 0.749) ;
+     border-color: none;
+     width: max-content;
+     font-style: oblique;
+     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+}
+
+
+#search{
+    text-align: left;
+    padding: 4px 10px;
+    background: transparent;
+    margin-bottom: 0;
+    border-radius: 20px;
+    color: #888;
+}
+#fotos{
+    text-align: center;
+}
+
+nav ul li{
+    display: inline;
+    background-color:rgb(128, 168, 233);
+    color: rgb(0, 0, 0);
+    border: 2px solid rgb(75, 75, 159);
+    border-radius: 20px;
+    padding: 4px;
+    margin-right: 1px;
+}
+
+nav ul a li:hover{
+    background-color: rgb(111, 79, 192); 
+}

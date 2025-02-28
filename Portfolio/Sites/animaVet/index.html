@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="AnimaVet, animal, dog, cat, Guinea Pig, Bath, groom, vaccination">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clínica AnimaVet</title>
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;1,300&display=swap" rel="stylesheet">
+</head>
+<body>
+    <input id="search" type="text" placeholder="Pesquisar" autocomplete="off">
+    <h2 >Clínica AnimaVet</h2>
+    <nav>
+        <ul>
+            <a href="#servicos"><li>Serviços</li></a>
+            <a href="#cadastro"> <li>Cadastro</li></a>
+        </ul>
+    </nav>
+    <section id="fotos">
+        <h3>Fotos</h3>
+        <image src="img/img1.jpg" width="30%"></image> 
+    </section>
+    <section id="servicos">
+        <h3>Serviços</h3>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th colspan="2">Tabela de Serviços</th>
+                </tr>
+                <tr>
+                    <th>Serviço</th>
+                    <th>Preços</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Banho e Tosa</td>
+                    <td>R$ 60,00</td>
+                </tr>
+                <tr>
+                    <td>Vacinação</td>
+                    <td>R$ 90,00</td>
+                </tr>
+                <tr>
+                    <td>Consulta</td>
+                    <td>R$ 110,00</td>
+                </tr>
+                <tr>
+                    <td>Banho</td>
+                    <td>R$ 40,00</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="2">Serviço Leva e Traz: R$ 30,00</th>
+                </tr>
+            </tfoot>
+            </table>   
+
+    </section>
+    <form>
+        <h3 id="cadastro">Cadastro</h3>
+        <fieldset>
+            <legend>Dados do Animal</legend>
+            <div>
+                <label for="nomeanimal"><!--tirei o texto para ficar melhor o design--></label>
+                <input type="text" 
+                        name="nomeanimal" 
+                        id="nomeanimal"
+                        maxLength="30"
+                        size="30"
+                        placeholder="Digite o nome do animal"
+                        required>
+                        <label for="datetime">Data de Nascimento</label>
+                <input min="1990-01-01" max="2023-01-01"
+                        type="date"
+                        name="bdaytime">                 
+                <input type="checkbox"
+                        name="bravo"
+                        id="num"
+                        checked>
+                <label for="bravo">O Animal é bravo?</label>
+                <fieldset>
+                <legend>Tipo</legend>
+                <label for="tipo"></label>
+                <label>Gato</label>
+                <input type="radio"
+                        name="gato"
+                        value="gato">
+                <label>Cachorro</label>
+                <input type="radio"
+                        name="cachorro"
+                        value="cachorro">
+                <label>Porquinho-da-índia</label>
+                <input type="radio"
+                        name="porqindia"
+                        value="porqindia">
+                </fieldset>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Dados do Dono</legend>
+                <label for="nomedono"></label>
+                <input type="text" 
+                        name="nomedono" 
+                        id="nomedono"
+                        maxLength="30"
+                        size="30"
+                        placeholder="Nome do Dono"
+                        required>
+                <label for="tele"></label>
+                <input pattern="^\([1-9]{2}\) (?:[2-8]|9[1-9])[0-9]{3}\-[0-9]{4}$"
+                        type="tel"
+                        name="fone"
+                        id="tele"
+                        placeholder="Telefone"
+                        required>
+        </fieldset>
+        <input type="submit" value="Cadastrar">
+        <input type="reset" value="Limpar"> 
+    </form>
+</body>
+<footer>
+    <h5> Gesley Web ® - 2023 - Fatec Votorantim</h5>
+</footer>
+</html>

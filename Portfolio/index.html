@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +12,7 @@
     <!-- Link para o CSS personalizado -->
     <link rel="stylesheet" href="/style.css">
 </head>
+
 <body>
     <!-- Barra de Navegação -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -39,10 +41,7 @@
     <!-- Seção de Introdução -->
     <header class="jumbotron text-center">
         <h1 class="display-4">Bem-vindo ao Meu Portfólio</h1>
-        <p class="lead">Aluno do curso de Desenvolvimento de Software Multiplataforma pela Fatec Votorantim e
-                        Formado em Engenharia de Produção pela Universidade de Sorocaba.
-                        Já desenvolvi uma Aplicação com o tema "Cidades Inteligentes", como projeto para a Iniciação Científica. 
-        </p>
+        <p class="lead">Aluno do curso de Desenvolvimento de Software Multiplataforma pela Fatec Votorantim e Formado em Engenharia de Produção pela Universidade de Sorocaba. Já desenvolvi uma Aplicação com o tema "Cidades Inteligentes", como projeto para a Iniciação Científica.</p>
     </header>
 
     <!-- Seção Sobre -->
@@ -56,7 +55,7 @@
         <h2>Meus Projetos</h2>
         <div class="row">
             <div class="col-md-4">
-                <div class="card">
+                <div class="card" data-toggle="modal" data-target="#carouselModal" onclick="openCarousel(1)">
                     <img src="/img/projeto3NewWeather.png" class="card-img-top" alt="Projeto 1">
                     <div class="card-body">
                         <h5 class="card-title">Projeto 1</h5>
@@ -65,7 +64,7 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="card">
+                <div class="card" data-toggle="modal" data-target="#carouselModal" onclick="openCarousel(2)">
                     <img src="/img/login.png" class="card-img-top" alt="Projeto 2">
                     <div class="card-body">
                         <h5 class="card-title">Projeto 2</h5>
@@ -74,16 +73,45 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="card">
-                    <img src="https://via.placeholder.com/350x200" class="card-img-top" alt="Projeto 3">
+                <div class="card" data-toggle="modal" data-target="#carouselModal" onclick="openCarousel(3)">
+                    <img src="./img/clinicaVet.png" class="card-img-top" alt="Projeto 3">
                     <div class="card-body">
-                        <h5 class="card-title">Projeto 3</h5>
-                        <p class="card-text">Descrição breve do projeto.</p>
+                        <h5 class="card-title">Clínica Veterinária</h5>
+                        <p class="card-text">Site para uma clínica, onde há tabelas de serviços e cadastro de pets para exames</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Carrossel Modal -->
+    <div class="modal fade" id="carouselModal" tabindex="-1" role="dialog" aria-labelledby="carouselModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="carouselModalLabel">Carrossel de Imagens</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="projectCarousel" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner" id="carouselImages">
+                            <!-- As imagens serão inseridas aqui pelo JavaScript -->
+                        </div>
+                        <a class="carousel-control-prev" href="#projectCarousel" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Anterior</span>
+                        </a>
+                        <a class="carousel-control-next" href="#projectCarousel" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Próximo</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Seção Contato -->
     <section id="contato" class="container py-5">
@@ -98,7 +126,6 @@
         </div>
     </section>
 
-    <!-- Rodapé -->
     <footer class="text-center py-4">
         <p>&copy; 2025 Gesley de Oliveira Rosa. Todos os direitos reservados.</p>
     </footer>
@@ -109,4 +136,5 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="script.js"></script>
 </body>
+
 </html>

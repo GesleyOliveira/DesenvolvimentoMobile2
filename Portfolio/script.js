@@ -1,14 +1,41 @@
-document.getElementById("form-contato").addEventListener("submit", function(event) {
-    event.preventDefault();
-    
-    let nome = document.getElementById("nome").value;
-    let email = document.getElementById("email").value;
-    let mensagem = document.getElementById("mensagem").value;
+// Função para abrir o carrossel com imagens específicas para o projeto
+function openCarousel(projectId) {
+    const carouselImages = document.getElementById("carouselImages");
+    carouselImages.innerHTML = '';
 
-    if (!nome || !email || !mensagem) {
-        alert("Por favor, preencha todos os campos.");
-    } else {
-        alert("Mensagem enviada com sucesso!");
-        // Aqui você pode adicionar a lógica para enviar o formulário para um servidor ou e-mail
+    let images = [];
+
+    // Definindo as imagens para cada projeto
+    if (projectId === 1) {
+        images = [
+            '/img/projeto1-img1.jpg',
+            '/img/projeto1-img2.jpg',
+            '/img/projeto1-img3.jpg'
+        ];
+    } else if (projectId === 2) {
+        images = [
+            '/img/projeto2-img1.jpg',
+            '/img/projeto2-img2.jpg',
+            '/img/projeto2-img3.jpg'
+        ];
+    } else if (projectId === 3) {
+        images = [
+            '/img/projeto3-img1.jpg',
+            '/img/projeto3-img2.jpg',
+            '/img/projeto3-img3.jpg'
+        ];
     }
-});
+
+    // Insere as imagens no carrossel
+    images.forEach((imgSrc, index) => {
+        const isActive = index === 0 ? 'active' : '';
+        const carouselItem = `
+            <div class="carousel-item ${isActive}">
+                <img src="${imgSrc}" class="d-block w-100" alt="Imagem do Projeto">
+            </div>
+        `;
+        carouselImages.innerHTML += carouselItem;
+    });
+}
+
+
