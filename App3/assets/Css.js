@@ -18,7 +18,7 @@ const css = StyleSheet.create({
     },
     header_img: {
         marginLeft: 'auto',
-        marginRight: auto
+        marginRight: 'auto'
     },
     footer: {
         width: '100%',

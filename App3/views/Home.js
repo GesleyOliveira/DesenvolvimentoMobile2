@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Image, Viw, TouchableOpacity, Text } from 'react-native'
+import { Image, View, TouchableOpacity, Text } from 'react-native'
 import { css } from '../assets/Css'
  
 export default function Home({ navigation }) {
