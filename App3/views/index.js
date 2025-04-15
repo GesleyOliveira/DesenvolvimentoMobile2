@@ -1,4 +1,4 @@
 import Home from './Home'
-import Cadastro from './Cadastro';
+import Register from './Register';
 
-export{Home, Cadastro};
+export{Home, Register};

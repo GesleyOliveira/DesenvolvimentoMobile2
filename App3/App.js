@@ -11,7 +11,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name='Home' component={Home} options={{headerShown:false}}/>
-        <Stack.Screen name='Cadastro' component={Cadastro} options={{headerShown:false}}/>
+        <Stack.Screen name='Register' component={Register} options={{headerShown:false}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
