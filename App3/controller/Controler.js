@@ -1,12 +1,13 @@
 const express = require('express');
+const bodyParser=require('body-parser');
 const cors = require('cors');
 const {user} = require('./models');
 
 
 let app=express();
 app.use(cors());
-app.use(express.urlencoded({extended: false}));
-app.use(express.json());
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
 
 //Routes
 app.post('/create', async(req,res) => {
@@ -29,18 +30,13 @@ app.post('/create', async(req,res) => {
 app.get('/Users', async (req, res) => {
     try {
         const users = await user.findAll({
-            attributes: ['id', 'nameUser', 'emailUser'], // Especificar os atributos desejados
+            attributes: ['id', 'name', 'emailUser', 'createdAt'], // Especificar os atributos desejados
         });
-        
+        res.json(users);
         // Verificar se algum usuário foi encontrado
-        if (users.length > 0) {
-            return res.status(200).json(users); // Enviar lista de usuários em formato JSON
-        } else {
-            return res.status(404).json({ message: 'Nenhum usuário encontrado' });
-        }
     } catch (error) {
         console.error('Erro ao listar usuários:', error);
-        return res.status(500).json({ message: 'Erro no servidor' });
+        res.status(500).json({ error: 'Erro ao buscar usuários' });
     }
 });
 
@@ -48,4 +44,4 @@ app.get('/Users', async (req, res) => {
 let port = 3000;
 app.listen(port, (req, res) => {
     console.log('Servidor Rodando')
-})
+});
