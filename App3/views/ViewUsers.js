@@ -7,12 +7,11 @@ export default function ViewUsers({ navigation }) {
     const [users, setUsers] = useState([]); // Estado para armazenar os usuários
     const [loading, setLoading] = useState(true); // Estado para controlar o carregamento
 
-    useEffect(() => {
-        // Função para buscar usuários do backend
-        const fetchUsers = async () => {
+    // Função para buscar usuários cadastrados do backend
+    async function useEffect(){
             try {
-                const response = await fetch(config.urlRootNode + 'Users');
-                const data = await response.json();
+                let response = await fetch(config.urlRootNode + 'Users');
+                let data = await response.json();
                 setUsers(data); // Atualiza o estado com os usuários recebidos
             } catch (error) {
                 console.error('Erro ao buscar usuários:', error);
@@ -21,17 +20,38 @@ export default function ViewUsers({ navigation }) {
             }
         };
 
-        fetchUsers(); // Chama a função quando o componente é montado
+        useEffect(() => { // Chama a função quando o componente é montado
+            fetchUsers();
     }, []); // O array vazio [] garante que a requisição seja feita apenas uma vez ao carregar o componente
 
-    if (loading) {
         return (
             <View style={css.container}>
-                <ActivityIndicator size="large" color="#007BFF" /> {/* Exibe o indicador de carregamento */}
-                <Text>Carregando usuários...</Text>
+                <Text style={css.style}>Lista de Usuários</Text>
+
+                (loading ? (
+                    <ActivityIndicator size="large" color="#0000ff" /> 
+
+                ) : (
+                    <ScrollView style={{ marginTop: 20 }}>
+                        (users.length > 0 ? (
+                            users.map((user, index) => (
+                                <View key={index} style={css.card}>
+                                    <Text style={{ fontWeight: 'bold' }}>Nome: {user.name}</Text>
+                                    <Text>Email: {user.email}</Text>
+                                    <Text>Data de Cadastro:
+                                        {new Date(user.createdAt).toLocaleString()}
+                                    </Text>
+                                </View>
+                            ))
+                        ) : (
+                            <Text style={{ textAlign: 'center', marginTop: 20 }}>
+                                Nenhum Usuário Cadastrado
+                            </Text>
+                        ))
+                    </ScrollView>
+                ))
             </View>
         );
-    }
 
     return (
         <ScrollView style={css.container}>
