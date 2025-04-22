@@ -1,32 +1,55 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import config from '../config/config.json';
-import {Image, Keyboard, keyboard, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, View} from 'react-native';
+import { Image, Keyboard, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, View, Alert, Platform } from 'react-native';
 import { css } from '../assets/Css';
+import { showAlert } from '../utils/alert';
 
 export default function Register({navigation}) {
-    
-    const [user, setUser] = useState(null);
-    const [password, setPassword] = useState(null);
-    const [email, setEmail] = useState(null);
 
-    //Envia os dados do formulário para o backend
+    const [user, setUser] = useState('');
+    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('');
+
     async function registerUser(){
-        let reps = await fetch(config.urlRootNode+'create', {
-            method: 'POST',
-            headers:{
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                nameUser: user,
-                passwordUser: password,
-                emailUser: email
-            })
-        });
-    }
+        if (!user || !password || !email) {
+            Alert.alert('Erro', 'Por favor, preencha todos os campos.');
+            return;
+        }
+
+        try {
+            const response = await fetch(config.urlRootNode + 'create', {
+                method: 'POST',
+                headers:{
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    nameUser: user,
+                    passwordUser: password,
+                    emailUser: email
+                })
+            });
+
+            const data = await response.json();
+            showAlert('Sucesso',  data);
+
+
+            // Limpar os campos
+            setUser('');
+            setPassword('');
+            setEmail('');
+            Keyboard.dismiss();
+
+        } catch (error) {
+            console.error('Erro ao cadastrar usuário:', error);
+            showAlert('Erro',  error);
+        }
+    };
 
     return(
-        <TouchableWithoutFeedback onPress={()=>Keyboard.dismiss()}>
+        <TouchableWithoutFeedback onPress={() => {
+            if (Platform.OS !== 'web') Keyboard.dismiss();
+        }}>        
             <View style={css.container}>
 
                 <View style={css.header}>
@@ -37,20 +60,23 @@ export default function Register({navigation}) {
                     <TextInput
                         style={css.input}
                         placeholder='Digite o seu Nome'
-                        onChangeText={(text)=> setUser(text)}
+                        value={user}
+                        onChangeText={setUser}
                     />
 
                     <TextInput
                         style={css.input}
                         placeholder='Digite o seu E-mail'
-                        onChangeText={(text)=> setEmail(text)}
+                        value={email}
+                        onChangeText={setEmail}
                     />
 
                     <TextInput
                         style={css.input}
                         placeholder='Digite a Senha'
                         secureTextEntry={true}
-                        onChangeText={(text)=> setPassword(text)}
+                        value={password}
+                        onChangeText={setPassword}
                     />
 
                     <TouchableOpacity style={css.button} onPress={registerUser}>   
@@ -60,7 +86,6 @@ export default function Register({navigation}) {
                 </View>
 
             </View>
-
         </TouchableWithoutFeedback>
     )
 }

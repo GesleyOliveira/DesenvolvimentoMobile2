@@ -1,71 +1,89 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, TouchableOpacity, ScrollView, ActivityIndicator } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, ActivityIndicator, Alert } from 'react-native';
 import config from '../config/config.json';
 import { css } from '../assets/Css';
 
 export default function ViewUsers({ navigation }) {
-    const [users, setUsers] = useState([]); // Estado para armazenar os usuários
-    const [loading, setLoading] = useState(true); // Estado para controlar o carregamento
+    const [users, setUsers] = useState([]);
+    const [loading, setLoading] = useState(true);
 
-    // Função para buscar usuários cadastrados do backend
-    async function useEffect(){
-            try {
-                let response = await fetch(config.urlRootNode + 'Users');
-                let data = await response.json();
-                setUsers(data); // Atualiza o estado com os usuários recebidos
-            } catch (error) {
-                console.error('Erro ao buscar usuários:', error);
-            } finally {
-                setLoading(false); // Para de mostrar o indicador de carregamento
-            }
-        };
+    const fetchUsers = async () => {
+        try {
+            const response = await fetch(config.urlRootNode + 'Users');
+            const data = await response.json();
+            setUsers(data);
+        } catch (error) {
+            console.error('Erro ao buscar usuários:', error);
+        } finally {
+            setLoading(false);
+        }
+    };
 
-        useEffect(() => { // Chama a função quando o componente é montado
+    useEffect(() => {
+        fetchUsers();
+    }, []);
+
+    const deleteUser = async (id) => {
+        try {
+            const response = await fetch(`${config.urlRootNode}User/${id}`, {
+                method: 'DELETE',
+            });
+
+            const result = await response.json();
+            Alert.alert('Aviso', result.message);
+
+            // Atualiza a lista após deletar
             fetchUsers();
-    }, []); // O array vazio [] garante que a requisição seja feita apenas uma vez ao carregar o componente
+        } catch (error) {
+            console.error('Erro ao deletar usuário:', error);
+        }
+    };
 
+    const confirmDelete = (id) => {
+        Alert.alert(
+            'Confirmar exclusão',
+            'Tem certeza que deseja deletar este usuário?',
+            [
+                { text: 'Cancelar', style: 'cancel' },
+                { text: 'Deletar', style: 'destructive', onPress: () => deleteUser(id) }
+            ]
+        );
+    };
+
+
+    if (loading) {
         return (
-            <View style={css.container}>
-                <Text style={css.style}>Lista de Usuários</Text>
-
-                (loading ? (
-                    <ActivityIndicator size="large" color="#0000ff" /> 
-
-                ) : (
-                    <ScrollView style={{ marginTop: 20 }}>
-                        (users.length > 0 ? (
-                            users.map((user, index) => (
-                                <View key={index} style={css.card}>
-                                    <Text style={{ fontWeight: 'bold' }}>Nome: {user.name}</Text>
-                                    <Text>Email: {user.email}</Text>
-                                    <Text>Data de Cadastro:
-                                        {new Date(user.createdAt).toLocaleString()}
-                                    </Text>
-                                </View>
-                            ))
-                        ) : (
-                            <Text style={{ textAlign: 'center', marginTop: 20 }}>
-                                Nenhum Usuário Cadastrado
-                            </Text>
-                        ))
-                    </ScrollView>
-                ))
+            <View style={css.loadingContainer}>
+                <ActivityIndicator size="large" color="#007BFF" />
+                <Text style={css.loadingText}>Carregando usuários...</Text>
             </View>
         );
+    }
 
     return (
-        <ScrollView style={css.container}>
+        <ScrollView style={{ flex: 1 }} contentContainerStyle={css.scrollContainer}>
+            <Text style={css.title}>Lista de Usuários</Text>
             {users.length > 0 ? (
                 users.map((user) => (
                     <View key={user.id} style={css.userCard}>
-                        <Text style={css.userName}>{user.nameUser}</Text>
-                        <Text style={css.userEmail}>{user.emailUser}</Text>
-                        <TouchableOpacity
-                            style={css.viewButton}
-                            onPress={() => navigation.navigate('UserDetails', { userId: user.id })}
-                        >
-                            <Text style={css.buttonText}>Ver Detalhes</Text>
-                        </TouchableOpacity>
+                        <Text style={css.userName}>{user.name}</Text>
+                        <Text style={css.userEmail}>{user.email}</Text>
+
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                            <TouchableOpacity
+                                style={css.viewButton}
+                                onPress={() => navigation.navigate('UserDetails', { userId: user.id })}
+                            >
+                                <Text style={css.buttonText}>Ver Detalhes</Text>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity
+                                style={[css.viewButton, { backgroundColor: '#dc3545' }]}
+                                onPress={() => confirmDelete(user.id)}
+                            >
+                                <Text style={css.buttonText}>Deletar</Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
                 ))
             ) : (

@@ -12,10 +12,15 @@ export default function Home({ navigation }) {
             <View style={css.footer}>
                 <TouchableOpacity
                     style={css.button}
-                    onPress={() => navigation.navigate('Cadastro')}
+                    onPress={() => navigation.navigate('Register')}
                 >
- 
                     <Text style={css.buton_text}>Cadastro</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={css.button}
+                    onPress={() => navigation.navigate('ViewUsers')}
+                >
+                    <Text style={css.buton_text}>Consulta</Text>
                 </TouchableOpacity>
             </View>
         </View>
